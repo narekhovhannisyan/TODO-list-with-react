@@ -1,46 +1,44 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
 export class Form extends Component {
-  submitHandler(e) {
-    this.props.submitValue(this.textInput.value);
+  submitHandler () {
+    this.props.submitValue(this.textInput.value)
   }
 
-  render() {
+  render () {
     return (
       <div>
         <input
           ref={input => {
-            this.textInput = input;
+            this.textInput = input
           }}
         />
-        <button onClick={e => this.submitHandler(e)}>{`${
+        <button onClick={() => this.submitHandler()}>{`${
           this.props.buttonName
-        }`}</button>
+          }`}</button>
       </div>
-    );
+    )
   }
 }
 
 export class Row extends Component {
-  render() {
-    return <h2 style={{ color: this.props.color }}>{this.props.value}</h2>;
+  render () {
+    return <h2 style={{ color: this.props.color }}>{this.props.value}</h2>
   }
 }
 
 export class SubmitButton extends Component {
-  render() {
+  render () {
     return (
-      <button onClick={e => this.props.onClick(this.props.elemIndex)}>
+      <button onClick={() => this.props.onClick(this.props.elemIndex)}>
         Done
       </button>
-    );
+    )
   }
 }
 
 export class RemoveButton extends Component {
-  removeRow() {}
-
-  render() {
-    return <button onClick={e => this.removeRow()}>Remove</button>;
+  render () {
+    return <button onClick={() => this.props.onClick(this.props.elemIndex)}>Remove</button>
   }
 }
