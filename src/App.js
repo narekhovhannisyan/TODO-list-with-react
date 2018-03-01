@@ -10,14 +10,16 @@ class App extends Component {
   }
 
   submitValue = newTodo => {
-    const objectToPush = {
-      title: newTodo,
-      isActive: false
-    }
+    if (newTodo !== '') {
+      const objectToPush = {
+        title: newTodo,
+        isActive: false
+      }
 
-    this.setState({
-      list: [...this.state.list, objectToPush]
-    })
+      this.setState({
+        list: [...this.state.list, objectToPush]
+      })
+    }
   }
 
   submitSuccess = index => {
@@ -46,7 +48,8 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <Form buttonName={'Submit'} submitValue={(newValue) => this.submitValue(newValue)}/>
+        <Form buttonName={'Submit'} submitValue={(newValue) => this.submitValue(newValue)}
+              onKeyPress={this.submitSuccess}/>
         {this.state.list.map((item, index) => {
           return (
             <div key={index}>
@@ -54,7 +57,9 @@ class App extends Component {
                 color={item.isActive ? 'green' : 'black'}
                 value={item.title}
               />
-              <SubmitButton elemIndex={index} onClick={(newIndex) => this.submitSuccess(newIndex)}/>
+              <SubmitButton elemIndex={index}
+                            onClick={this.submitSuccess}
+              />
               <RemoveButton elemIndex={index} onClick={(rowToRemove) => this.removeRow(rowToRemove)}/>
             </div>
           )
