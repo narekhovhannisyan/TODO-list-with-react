@@ -12,10 +12,13 @@ export class Form extends Component {
           ref={input => {
             this.textInput = input
           }}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              this.submitHandler()
+            }
+          }}
         />
-        <button onClick={() => this.submitHandler()}>{`${
-          this.props.buttonName
-          }`}</button>
+        <button onClick={() => this.submitHandler()}>{`${this.props.buttonName}`}</button>
       </div>
     )
   }
