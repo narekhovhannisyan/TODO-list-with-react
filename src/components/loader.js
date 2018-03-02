@@ -8,7 +8,7 @@ export class Loader extends Component {
     }
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.setState({
       ...this.state,
       timer: setInterval(this.props.incrementist, 1000)
@@ -19,14 +19,8 @@ export class Loader extends Component {
     clearInterval(this.state.timer)
   }
 
-  printingLoop = (count, whatToPrint) => {
-    const array = []
-
-    for (let i = 0; i <= count; i++) {
-      array.push(whatToPrint())
-    }
-
-    return array
+  loopDots = (count) => {
+    return '.'.repeat(count)
   }
 
   render () {
@@ -35,12 +29,8 @@ export class Loader extends Component {
         <h1 style={{
           display: 'inline'
         }}>Loading</h1>
-        {this.printingLoop(this.props.loadCount, Dot)}
+        {this.loopDots(this.props.loadCount)}
       </div>
     )
   }
-}
-
-const Dot = () => {
-  return (<h1 style={{ display: 'inline' }}>.</h1>)
 }
