@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { Form, Row, SubmitButton, RemoveButton } from './fromComponent'
+import { Form, Row } from './components/from'
+import { SubmitButton, RemoveButton } from './components/buttons'
+import { Loader } from './components/loader'
 
 class App extends Component {
   constructor () {
     super()
     this.state = {
-      list: []
+      list: [],
+      dotCount: 0,
+      dotMaxCount: 5
     }
   }
 
@@ -45,11 +49,28 @@ class App extends Component {
     })
   }
 
+  incrementCount = () => {
+    const count = this.state.dotCount < this.state.dotMaxCount - 1 ? this.state.dotCount + 1 : 0
+
+    this.setState({
+      ...this.state,
+      dotCount: count
+    })
+  }
+
   render () {
     return (
       <div className="App">
-        <Form buttonName={'Submit'} submitValue={(newValue) => this.submitValue(newValue)}
-              onKeyPress={this.submitSuccess}/>
+        <Form buttonName={'Submit'}
+              submitValue={(newValue) => this.submitValue(newValue)}
+              onKeyPress={this.submitSuccess}
+        />
+        {
+          <Loader
+            loadCount={this.state.dotCount}
+            incrementist={this.incrementCount}
+          />
+        }
         {this.state.list.map((item, index) => {
           return (
             <div key={index}>
@@ -60,7 +81,8 @@ class App extends Component {
               <SubmitButton elemIndex={index}
                             onClick={this.submitSuccess}
               />
-              <RemoveButton elemIndex={index} onClick={(rowToRemove) => this.removeRow(rowToRemove)}/>
+              <RemoveButton elemIndex={index}
+                            onClick={(rowToRemove) => this.removeRow(rowToRemove)}/>
             </div>
           )
         })}
