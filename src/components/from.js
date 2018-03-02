@@ -9,24 +9,22 @@ export class Form extends Component {
     return (
       <div>
         <input
-          ref={input => {
-            this.textInput = input
+          ref={input => {this.textInput = input}}
+          onKeyPress={(event) => {
+            console.log('onKeyPress log this: ', event.key)
+            if (event.key === 'Enter') {
+              this.submitHandler()
+            }
           }}
         />
-        <button onClick={() => this.submitHandler()}
-                onKeyPress={event => {
-                  if (event.key === 'Enter') {
-                    this.submitHandler()
-                  }
-                }}>{`${this.props.buttonName}`}
+        <button onClick={() => this.submitHandler()}>
+          {`${this.props.buttonName}`}
         </button>
       </div>
     )
   }
 }
 
-export class Row extends Component {
-  render () {
-    return <h2 style={{ color: this.props.color }}>{this.props.value}</h2>
-  }
+export const Row = (props) => {
+  return (<h2 style={{ color: props.color }}>{props.value}</h2>)
 }
