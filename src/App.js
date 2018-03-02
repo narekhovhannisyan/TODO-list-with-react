@@ -41,7 +41,7 @@ class App extends Component {
     })
   }
 
-  removeRow = index => {
+  removeRow = (index) => {
     const newList = [...this.state.list.slice(0, index), ...this.state.list.slice(index + 1)]
 
     this.setState({
@@ -62,8 +62,7 @@ class App extends Component {
     return (
       <div className="App">
         <Form buttonName={'Submit'}
-              submitValue={(newValue) => this.submitValue(newValue)}
-              onKeyPress={this.submitSuccess}
+              submitValue={this.submitValue}
         />
         {
           <Loader
