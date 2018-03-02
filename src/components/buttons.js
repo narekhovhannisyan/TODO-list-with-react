@@ -1,17 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class SubmitButton extends Component {
-  render () {
-    return (
-      <button onClick={() => this.props.onClick(this.props.elemIndex)}>
-        Done
-      </button>
-    )
-  }
+export const SubmitButton = (props) => {
+  return (<button onClick={() => props.onClick(props.elemIndex)}>Done</button>)
 }
 
-export class RemoveButton extends Component {
-  render () {
-    return <button onClick={() => this.props.onClick(this.props.elemIndex)}>Remove</button>
-  }
+export const RemoveButton = (props) => {
+  return (<button onClick={() => props.onClick(props.elemIndex)}>Remove</button>)
 }
