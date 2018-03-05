@@ -31,12 +31,12 @@ class App extends Component {
 
     this.setState({
       list: [
-        ...this.state.list.splice(0, index),
+        ...this.state.list.slice(0, index),
         {
           title,
           isActive: true
         },
-        ...this.state.list.splice(index + 1)
+        ...this.state.list.slice(index + 1)
       ]
     })
   }
